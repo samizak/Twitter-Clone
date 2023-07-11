@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { BsHouseFill, BsBellFill, BsSearch, BsBookmark } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
+import { BsHouseFill, BsSearch, BsBookmark } from "react-icons/bs";
 import { SlEnvolope } from "react-icons/sl";
-import { PiNotebook } from "react-icons/pi";
+import { PiBellBold, PiNotebook } from "react-icons/pi";
+import { HiOutlineUser } from "react-icons/hi";
 
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
-import SidebarTweetButton from "./SidebarTweetButton ";
+import TweetButton from "./TweetButton";
 
 export default function Sidebar() {
   const items = [
@@ -25,7 +25,7 @@ export default function Sidebar() {
     {
       label: "Notifications",
       href: "/notifications",
-      icon: BsBellFill,
+      icon: PiBellBold,
     },
     {
       label: "Messages",
@@ -45,7 +45,7 @@ export default function Sidebar() {
     {
       label: "Profile",
       href: "/users/132",
-      icon: FaUser,
+      icon: HiOutlineUser,
     },
   ];
 
@@ -59,7 +59,7 @@ export default function Sidebar() {
             <SidebarItem key={item.href} href={item.href} icon={item.icon} label={item.label} />
           ))}
 
-          <SidebarTweetButton />
+          <TweetButton />
         </div>
       </div>
     </div>

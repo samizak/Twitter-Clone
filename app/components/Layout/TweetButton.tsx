@@ -1,8 +1,7 @@
-import { useCallback } from "react";
 import { FaFeather } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
-const SidebarTweetButton = () => {
+const TweetButton = () => {
   const router = useRouter();
 
   return (
@@ -56,4 +55,4 @@ const SidebarTweetButton = () => {
   );
 };
 
-export default SidebarTweetButton;
+export default TweetButton;

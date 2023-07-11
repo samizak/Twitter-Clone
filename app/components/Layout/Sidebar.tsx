@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
-import { BsHouseFill, BsBellFill } from "react-icons/bs";
+import { BsHouseFill, BsBellFill, BsSearch, BsBookmark } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
+import { SlEnvolope } from "react-icons/sl";
+import { PiNotebook } from "react-icons/pi";
+
 import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
 import SidebarTweetButton from "./SidebarTweetButton ";
@@ -15,9 +18,29 @@ export default function Sidebar() {
       icon: BsHouseFill,
     },
     {
+      label: "Explore",
+      href: "/",
+      icon: BsSearch,
+    },
+    {
       label: "Notifications",
       href: "/notifications",
       icon: BsBellFill,
+    },
+    {
+      label: "Messages",
+      href: "/messages",
+      icon: SlEnvolope,
+    },
+    {
+      label: "Lists",
+      href: "/lists",
+      icon: PiNotebook,
+    },
+    {
+      label: "Bookmarks",
+      href: "/bookmarks",
+      icon: BsBookmark,
     },
     {
       label: "Profile",

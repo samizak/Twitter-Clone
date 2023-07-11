@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 export default function Page() {
   return (
     <Layout>
-      <div className="text-3xl text-sky-500">Twitter</div>
+      <div className="pl-4 py-4 text-2xl text-white">Home</div>
     </Layout>
   );
 }

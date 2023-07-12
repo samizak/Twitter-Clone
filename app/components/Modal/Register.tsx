@@ -5,18 +5,29 @@ import { toast } from "react-hot-toast";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
 
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+
 import Input from "../Input";
 import Modal from "./Modal";
 
 const RegisterModal = () => {
-  const registerModal: any = { isOpen: true };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
+
+  const onToggle = useCallback(() => {
+    if (isLoading) return;
+
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal, isLoading]);
 
   const onSubmit = useCallback(async () => {
     try {
@@ -28,9 +39,7 @@ const RegisterModal = () => {
         username,
         name,
       });
-
       setIsLoading(false);
-
       toast.success("Account created.");
 
       signIn("credentials", {
@@ -38,13 +47,14 @@ const RegisterModal = () => {
         password,
       });
 
-      // registerModal.onClose();
+      registerModal.onClose();
     } catch (error) {
       toast.error("Something went wrong");
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
-  }, [email, password, username, name]);
+  }, [email, password, registerModal, username, name]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -70,7 +80,10 @@ const RegisterModal = () => {
     <div className="text-neutral-400 text-center mt-4">
       <p>
         Already have an account?
-        <span className="text-white cursor-pointer hover:underline"> Sign in</span>
+        <span onClick={onToggle} className="text-white cursor-pointer hover:underline">
+          {" "}
+          Sign in
+        </span>
       </p>
     </div>
   );

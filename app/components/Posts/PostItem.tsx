@@ -10,6 +10,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useLike from "@/hooks/useLike";
 
 import Avatar from "../Avatar";
+import useComment from "@/hooks/useComment";
 interface PostItemProps {
   data: Record<string, any>;
   userId?: string;
@@ -21,6 +22,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
 
   const { data: currentUser } = useCurrentUser();
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
+  const { hasCommented } = useComment({ postId: data.id, userId });
 
   const goToUser = useCallback(
     (ev: any) => {
@@ -38,10 +40,7 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
     async (ev: any) => {
       ev.stopPropagation();
 
-      if (!currentUser) {
-        return loginModal.onOpen();
-      }
-
+      if (!currentUser) return loginModal.onOpen();
       toggleLike();
     },
     [loginModal, currentUser, toggleLike]
@@ -75,26 +74,34 @@ const PostItem: React.FC<PostItemProps> = ({ data = {}, userId }) => {
           </div>
           <div className="mt-1 text-white">{data.body}</div>
           <div className="flex flex-row items-center gap-10 mt-3">
-            <div className="flex flex-row items-center gap-1 px-2 transition cursor-pointer text-neutral-500 hover:text-sky-500 group">
+            <div
+              className={
+                `flex flex-row items-center gap-1 px-2 transition cursor-pointer hover:text-sky-500 group ` +
+                (hasCommented ? "text-sky-500" : "text-neutral-500")
+              }
+            >
               <div className="flex justify-center w-10 h-10 align-middle rounded-full group-hover:bg-sky-500/10">
-                <BiMessageRounded size={20} className="m-auto" />
+                <BiMessageRounded className="m-auto" size={20} />
               </div>
               <p>{data.comments?.length || 0}</p>
             </div>
 
             <div className="flex flex-row items-center gap-1 px-2 transition cursor-pointer text-neutral-500 hover:text-emerald-500 group">
               <div className="flex justify-center w-10 h-10 align-middle rounded-full group-hover:bg-emerald-500/10">
-                <LiaRetweetSolid className="m-auto" color={hasLiked ? "teal" : ""} size={20} strokeWidth={1} />
+                <LiaRetweetSolid className="m-auto" /*color={hasLiked ? "teal" : ""}*/ size={20} strokeWidth={1} />
               </div>
-              <p>{data.likedIds.length}</p>
+              <p>{0}</p>
             </div>
 
             <div
               onClick={onLike}
-              className="flex flex-row items-center gap-1 px-2 transition cursor-pointer text-neutral-500 hover:text-pink-600 group"
+              className={
+                `flex flex-row items-center gap-1 px-2 transition cursor-pointer group hover:text-pink-600 ` +
+                (hasLiked ? "text-pink-600" : "text-neutral-500")
+              }
             >
               <div className="flex justify-center w-10 h-10 align-middle rounded-full group-hover:bg-pink-500/10">
-                <LikeIcon className="m-auto" color={hasLiked ? "pink" : ""} size={20} />{" "}
+                <LikeIcon className="m-auto" size={20} />
               </div>
               <p>{data.likedIds.length}</p>
             </div>

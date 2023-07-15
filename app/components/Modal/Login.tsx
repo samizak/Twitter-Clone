@@ -7,8 +7,8 @@ import { toast } from "react-hot-toast";
 import Input from "../Input";
 import Modal from "./Modal";
 
-import useLoginModal from "@/app/hooks/useLoginModal";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -75,11 +75,7 @@ const Login = () => {
       isOpen={loginModal.isOpen}
       title="Sign in to Twitter"
       actionLabel="Sign in"
-      onClose={() => {
-        loginModal.onClose();
-        toast("Here is your toast.");
-        console.log("???");
-      }}
+      onClose={loginModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
       footer={footerContent}

@@ -21,7 +21,7 @@ export default function Sidebar() {
   const items = [
     {
       label: "Home",
-      href: "",
+      href: "/",
       icon: BsHouseFill,
     },
     {
@@ -55,7 +55,7 @@ export default function Sidebar() {
     },
     {
       label: "Profile",
-      href: "/users/132",
+      href: `/users/${currentUser?.id}`,
       icon: HiOutlineUser,
       auth: true,
     },

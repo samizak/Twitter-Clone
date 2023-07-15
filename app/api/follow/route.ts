@@ -89,31 +89,8 @@ export async function DELETE(request: Request, { params }: any) {
     if (!user) throw new Error("Invalid ID");
 
     let updatedFollowingIds = [...(user.followingIds || [])];
-    updatedFollowingIds.push(userid);
-    updatedFollowingIds = updatedFollowingIds.filter((e) => e !== currentUser.id);
-
-    try {
-      await prismadb.notification.create({
-        data: {
-          body: "Someone followed you!",
-          userId: userid,
-        },
-      });
-
-      await prismadb.user.update({
-        where: {
-          id: userid,
-        },
-        data: {
-          hasNotification: true,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-      return NextResponse.json({ message: "An Error occurred" }, { status: 500 });
-    }
-
     updatedFollowingIds = updatedFollowingIds.filter((followingId) => followingId !== userid);
+    updatedFollowingIds = updatedFollowingIds.filter((e) => e !== currentUser.id);
 
     const updatedUser = await prismadb.user.update({
       where: {

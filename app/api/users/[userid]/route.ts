@@ -21,9 +21,15 @@ export async function GET(request: Request) {
       },
     });
 
-    // console.log({ ...existingUser, followerCount });
+    const postCount = await prismadb.post.count({
+      where: {
+        userId: userId,
+      },
+    });
 
-    return NextResponse.json({ ...existingUser, followerCount }, { status: 200 });
+    // console.log({ ...existingUser, followerCount, postCount });
+
+    return NextResponse.json({ ...existingUser, followerCount, postCount }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "An Error occurred" }, { status: 500 });

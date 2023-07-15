@@ -64,7 +64,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             ></textarea>
             <hr className="opacity-0 peer-focus:opacity-100 h-[1px] w-full border-neutral-800 transition" />
             <div className="flex flex-row justify-end mt-4">
-              <Button disabled={isLoading || !body} onClick={onSubmit} label="Tweet" />
+              <Button disabled={isLoading || !body} onClick={onSubmit} label={isComment ? "Reply" : "Tweet"} />
             </div>
           </div>
         </div>

@@ -41,8 +41,6 @@ export async function GET({ searchParams }: any) {
 
     // console.log(123132132313213213213213232132132131231, new URL(request.url).pathname.split("/"));
 
-    console.log(searchParams);
-
     let posts;
 
     // const _args = {

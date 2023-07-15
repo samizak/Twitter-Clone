@@ -22,7 +22,7 @@ const UserView = ({ params }: any) => {
 
   return (
     <>
-      <Header showBackArrow label={fetchedUser?.name} tweetCount={0} />
+      <Header showBackArrow label={fetchedUser?.name} tweetCount={fetchedUser?.postCount || 0} />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
       {/* <PostFeed userId={userId as string} /> */}

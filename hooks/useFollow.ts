@@ -15,7 +15,7 @@ const useFollow = (userId: string) => {
   const isFollowing = useMemo(() => {
     const list = currentUser?.followingIds || [];
     return list.includes(userId);
-  }, [currentUser, userId]);
+  }, [currentUser?.followingIds, userId]);
 
   const toggleFollow = useCallback(async () => {
     if (!currentUser) return loginModal.onOpen();
@@ -32,7 +32,7 @@ const useFollow = (userId: string) => {
       mutateCurrentUser();
       mutateFetchedUser();
 
-      toast.success("Success");
+      toast.success(!isFollowing ? "Followed" : "Unfollowed");
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong");

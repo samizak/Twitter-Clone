@@ -34,6 +34,7 @@ export default function Sidebar() {
       href: "/notifications",
       icon: PiBellBold,
       auth: true,
+      alert: currentUser?.hasNotification,
     },
     {
       label: "Messages",
@@ -67,8 +68,15 @@ export default function Sidebar() {
         <div className="space-y-2 lg:w-[230px]">
           <SidebarLogo />
 
-          {items.map((item) => (
-            <SidebarItem key={item.href} href={item.href} icon={item.icon} label={item.label} auth={item.auth} />
+          {items.map((item, index) => (
+            <SidebarItem
+              key={item.href + index}
+              href={item.href}
+              icon={item.icon}
+              label={item.label}
+              auth={item.auth}
+              alert={item.alert}
+            />
           ))}
 
           {currentUser && <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />}

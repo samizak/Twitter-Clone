@@ -15,9 +15,10 @@ https://twitter-clone-nine-blush.vercel.app
 * Prisma
 * NextAuth
 * Zustand
-* bcrypt
+* Bcrypt
 * SWR
-* axios
+* Axios
+* React-icons
 
 ### Prerequisites
 

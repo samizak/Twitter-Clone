@@ -20,35 +20,36 @@ https://twitter-clone-nine-blush.vercel.app
 * Axios
 * React-icons
 
-### Prerequisites
+# Getting Started
 
-**Node version 14.x**
-
-### Cloning the repository
-
+## 1. Cloning the repository
 ```shell
 git clone https://github.com/samizak/Twitter-Clone.git
 ```
 
-### Install packages
-
+## 2. Install packages
 ```shell
 npm i
 ```
+Or if you prefer using Yarn:
+```shell
+yarn install
+```
 
-### Setup .env file
-
-
+## 3. Setup .env file
 ```js
 DATABASE_URL=
 NEXTAUTH_JWT_SECRET=
 NEXTAUTH_SECRET=
 ```
 
-### Start the app
-
+## 4. Start the app
 ```shell
 npm run dev
+```
+Or if you prefer using Yarn:
+```shell
+yarn dev
 ```
 
 ## Available commands

@@ -27,8 +27,6 @@ export async function GET(request: Request) {
       },
     });
 
-    // console.log({ ...existingUser, followerCount, postCount });
-
     return NextResponse.json({ ...existingUser, followerCount, postCount }, { status: 200 });
   } catch (error) {
     console.error(error);

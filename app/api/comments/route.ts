@@ -28,7 +28,6 @@ export async function POST(request: Request, { params, searchParams }: any) {
       },
     });
 
-    // NOTIFICATION PART START
     try {
       const post = await prismadb.post.findUnique({
         where: {
@@ -54,7 +53,7 @@ export async function POST(request: Request, { params, searchParams }: any) {
         });
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     return NextResponse.json(comment, { status: 200 });
   } catch (error) {

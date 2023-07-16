@@ -33,41 +33,11 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET({ searchParams }: any) {
+export async function GET(request: Request) {
   try {
-    // const userId = new URL(request.url).pathname.split("/").at(-1);
-    // if (typeof userId !== "string") return NextResponse.json({ message: "Invalid ID" }, { status: 404 });
-    // if (!userId) return NextResponse.json({ message: "Missing ID" }, { status: 404 });
+    const userId = new URL(request.url).searchParams.get("userId");
 
-    // console.log(123132132313213213213213232132132131231, new URL(request.url).pathname.split("/"));
-
-    let posts;
-
-    // const _args = {
-    //   include: {
-    //     user: true,
-    //     comments: true,
-    //   },
-    //   orderBy: {
-    //     createdAt: "desc",
-    //   },
-    // } as Prisma.UserArgs;
-
-    // if (userId && typeof userId === "string") {
-    //   posts = await prismadb.post.findMany({
-    //     where: {
-    //       userId,
-    //     },
-    //     include: {
-    //       user: true,
-    //       comments: true,
-    //     },
-    //     orderBy: {
-    //       createdAt: "desc",
-    //     },
-    //   });
-    // } else {
-    posts = await prismadb.post.findMany({
+    let _args = {
       include: {
         user: true,
         comments: true,
@@ -75,22 +45,18 @@ export async function GET({ searchParams }: any) {
       orderBy: {
         createdAt: "desc",
       },
-    });
-    // }
+    } as Prisma.UserArgs;
 
-    // console.log(posts);
+    if (userId && typeof userId === "string") {
+      _args = {
+        ..._args,
+        where: {
+          userId,
+        },
+      } as Prisma.UserArgs;
+    }
 
-    // if (userId && typeof userId === "string") {
-    //   posts = await prismadb.post.findMany({
-    //     where: {
-    //       userId,
-    //     },
-    //     ..._args,
-    //   });
-    // } else {
-    //   posts = await prismadb.post.findMany(_args);
-    // }
-
+    const posts = await prismadb.post.findMany(_args);
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
     console.error(error);

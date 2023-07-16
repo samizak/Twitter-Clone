@@ -12,8 +12,6 @@ const useComment = ({ postId, userId }: { postId: string; userId?: string }) => 
     return list.filter((item: any) => item?.userId === currentUser?.id).length > 0;
   }, [fetchedPost, currentUser]);
 
-  //   console.log(fetchedPost, currentUser?.id);
-
   return {
     hasCommented,
   };

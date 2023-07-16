@@ -55,7 +55,6 @@ export async function POST(request: Request) {
       }
     } catch (error) {
       console.error(error);
-      return NextResponse.json({ message: "An Error occurred" }, { status: 500 });
     }
 
     const updatedPost = await prismadb.post.update({

@@ -3,7 +3,7 @@
 import { ClipLoader } from "react-spinners";
 import useUser from "@/hooks/useUser";
 
-// import PostFeed from "@/components/posts/PostFeed";
+import PostFeed from "@/app/components/Posts/PostFeed";
 import Header from "@/app/components/Header";
 import UserHero from "@/app/components/Users/UserHero";
 import UserBio from "@/app/components/Users/UserBio";
@@ -25,7 +25,7 @@ const UserView = ({ params }: any) => {
       <Header showBackArrow label={fetchedUser?.name} tweetCount={fetchedUser?.postCount || 0} />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
-      {/* <PostFeed userId={userId as string} /> */}
+      <PostFeed userId={userId as string} />
     </>
   );
 };

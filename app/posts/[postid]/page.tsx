@@ -8,7 +8,7 @@ import Form from "@/app/components/Form";
 import PostItem from "@/app/components/Posts/PostItem";
 import CommentFeed from "@/app/components/Posts/CommentFeed";
 
-const PostView = (request: Request) => {
+const PostView = () => {
   const { postid } = useParams();
   const { data: fetchedPost, isLoading } = usePost(postid as string);
 

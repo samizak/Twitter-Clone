@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fullstack Netflix Clone
 
-## Getting Started
+## Description
+A fullstack Twitter clone application created with NextJS, React, TailwindCSS and Prisma.
 
-First, run the development server:
+## Live Preview
+https://twitter-clone-nine-blush.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Technologies
+* TypeScript
+* NextJS
+* React
+* Tailwind CSS
+* MongoDB
+* Prisma
+* NextAuth
+* Zustand
+* bcrypt
+* SWR
+* axios
+
+### Prerequisites
+
+**Node version 14.x**
+
+### Cloning the repository
+
+```shell
+git clone https://github.com/samizak/Twitter-Clone.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Setup .env file
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+```js
+DATABASE_URL=
+NEXTAUTH_JWT_SECRET=
+NEXTAUTH_SECRET=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Start the app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```shell
+npm run dev
+```
 
-## Deploy on Vercel
+## Available commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Running commands with npm `npm run [command]`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| command         | description                              |
+| :-------------- | :--------------------------------------- |
+| `dev`           | Starts a development instance of the app |
+
+
+## Preview
+
+### Login Modal
+![Untitled](https://github.com/samizak/Twitter-Clone/assets/30938455/db7c9538-0eac-49eb-bdb4-c3692f7d6cdf)
+
+### Register Modal
+![Untitled2](https://github.com/samizak/Twitter-Clone/assets/30938455/c930a9c7-5806-4c9c-86ac-52e522b6ff80)
+
+### User Profile
+![Untitled3](https://github.com/samizak/Twitter-Clone/assets/30938455/e46efe27-6d60-4a13-a475-cf735a301955)

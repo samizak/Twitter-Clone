@@ -16,8 +16,9 @@ const RegisterModal = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
@@ -31,14 +32,29 @@ const RegisterModal = () => {
 
   const onSubmit = useCallback(async () => {
     try {
+      var reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      var result = reg.test(email);
+      if (!result) {
+        toast.error("Invalid Email!");
+        setErrorMessage("Invalid Email!");
+        return setIsError(true);
+      }
+
       setIsLoading(true);
 
-      await axios.post("/api/register", {
+      const { error }: any = await axios.post("/api/register", {
         email,
         password,
         username,
         name,
       });
+
+      if (error || error) {
+        toast.error("The Email is already taken.");
+        setErrorMessage("The Email is already taken.");
+        return setIsError(true);
+      }
+
       setIsLoading(false);
       toast.success("Account created.");
 
@@ -48,8 +64,15 @@ const RegisterModal = () => {
       });
 
       registerModal.onClose();
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.response?.data?.message === "Email taken") {
+        toast.error("The Email is already taken.");
+        setErrorMessage("The Email is already taken.");
+        return setIsError(true);
+      }
+
       toast.error("Something went wrong");
+      setErrorMessage("Something went wrong");
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -58,6 +81,12 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
+      {isError && (
+        <div className="px-4 py-3 mb-4 text-sm text-white rounded-md bg-amber-600">
+          <p className="text-2xl font-semibold text-center">{errorMessage}</p>
+        </div>
+      )}
+
       <Input disabled={isLoading} placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
       <Input
         disabled={isLoading}
@@ -65,7 +94,13 @@ const RegisterModal = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <Input disabled={isLoading} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Input
+        disabled={isLoading}
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        type="email"
+      />
       <Input
         disabled={isLoading}
         placeholder="Password"

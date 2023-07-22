@@ -1,4 +1,4 @@
-# Fullstack Netflix Clone
+# Fullstack Twitter Clone
 
 ## Description
 A fullstack Twitter clone application created with NextJS, React, TailwindCSS and Prisma.
